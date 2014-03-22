@@ -26,6 +26,12 @@
 		$config_file = $config_url;
 		include_once($config_file);
 		$config['database'] = $db;
+	} else {
+		// echo 'Config file not exist!';
+		$config_url 	= 'mighty_config/config/config.php';
+		$config_file = $config_url;
+		include_once($config_file);
+		$config['database'] = $db;
 	}
 
 	/**
