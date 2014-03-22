@@ -1,4 +1,10 @@
-mightycms
-=========
+# mightyCMS
+Simple, powerful CMS
 
-mightyCMS
+# Pocket
+mightyCMS is based on Pocket (PHP HMVC Framework)
+
+More info: https://github.com/philmmoore/pocket
+
+# Documentation
+coming soon

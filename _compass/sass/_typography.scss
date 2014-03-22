@@ -1,0 +1,175 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700");
+@import url("http://fonts.googleapis.com/css?family=Quicksand:300,400,700");
+
+$OpenSans : 'Open Sans', sans-serif, 'Helvetica Neue', Arial, sans-serif;
+$QuickSand : 'Quicksand', sans-serif, 'Helvetica Neue', Arial, sans-serif;
+
+h1.heading {
+	font-size: 28px;
+	font-family: $QuickSand;
+	padding: 20px 20px 30px 20px;
+	background: #fff;
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+i, 
+cite, 
+em, 
+var,
+dfn {
+	font-style:italic;
+}
+
+s, 
+strike, 
+del {
+	text-decoration: line-through;
+}
+
+.mightycontent {
+	
+	a {
+		color: #454545;
+	}
+	:hover {
+		text-decoration: none;
+	}
+
+	h1 {
+		font-size: 28px;
+		color: #454545;
+		font-weight: 600;
+		margin-bottom: 10px;
+		line-height: 40px;
+	}
+
+	h2 {
+		font-size: 26px;
+		color: #454545;
+		font-weight: 600;
+		margin-bottom: 10px;
+		line-height: 30px;
+	}
+
+	h3 {
+		font-size: 24px;
+		font-weight: 600;
+		color: #454545;
+		margin-bottom: 10px;
+		line-height: 24px;
+	}
+
+	h4, 
+	h5, 
+	h6 {
+		font-size: 22px;
+		font-weight: 600;
+		color: #454545;
+		margin-bottom: 10px;
+		line-height: 21px;
+	}
+	
+	p {
+		font-size: 14px;
+		line-height: 24px;
+	}
+
+	p,
+	li {
+		color: #6e6e6e;
+	}
+
+	p + p,
+	p + ul,
+	ul + p,
+	p + ol,
+	ol + p,
+	ul + ol,
+	ol + ul,
+	
+	p + .left,
+	.left + p,
+	ul + .left,
+	.left + ul,
+	ol + .left,
+	.left + ol,
+
+	p + .right,
+	.right + p,
+	ul + .right,
+	.right + ul,
+	ol + .right,
+	.right + ol,
+
+	p + iframe,
+	iframe + p,
+	ul + iframe,
+	iframe + ul,
+	ol + iframe,
+	iframe + ol {
+		margin-top: 20px;
+	}
+
+	h1 + p,
+	h2 + p,
+	h3 + p,
+	h4 + p,
+	h5 + p,
+	h6 + p {
+		margin-top: 20px;
+	}
+
+	p + h1,
+	p + h2,
+	p + h3,
+	p + h4,
+	p + h5,
+	p + h6,
+	ol + h1,
+	ol + h2,
+	ol + h3,
+	ol + h4,
+	ol + h5,
+
+	ul + h1,
+	ul + h2,
+	ul + h3,
+	ul + h4,
+	ul + h5 {
+		margin-top: 40px;
+	}
+
+	ul, ol {
+		font-size: 14px;
+		line-height: 21px;
+		margin: 0 0 0 35px;
+		li {
+			list-style-type: disc;
+		}
+	}
+
+	ol {
+		li {
+			list-style-type: decimal;
+		}
+	}
+
+	.left {
+		float: left;
+		margin-right: 20px;
+	}
+
+	.right {
+		float: right;
+		margin-left: 20px;
+	}
+
+	img,
+	iframe {
+		max-width: 100%;
+	}
+	
+}

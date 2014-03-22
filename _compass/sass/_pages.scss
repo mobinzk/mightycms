@@ -1,0 +1,79 @@
+.pages {
+	margin: 30px 0;
+
+	li {
+		.page-wrapper {
+			background: #F0F2F5;
+			border: 1px solid #eee;
+			border-bottom: 2px solid #eee;
+			@include border-radius(5px);
+			overflow: hidden;
+			position: relative;
+
+			.name {
+				display: inline-block;
+				font-size: 14px;
+				color: #666;
+				font-weight: 600;
+				vertical-align: top;
+				margin: 11px 0 10px;
+			}
+
+			.uim-button {
+				font-size: 12px;
+				padding: 5px 10px 4px;
+			}
+		}
+
+
+		.actions {
+			display: none;
+			position: absolute;
+			right: 60px;
+			top: 4px;
+		}
+		
+		> ul {
+			margin: 10px 0 0 0;
+			padding: 0 0 0 45px;
+
+			li {
+				.page-wrapper {
+					background: #f6f8fa;
+				}
+
+				.icon-pages {
+					@extend .icon-subpage;
+				}
+			}
+
+			li + li,
+			li:first-child {
+				margin: 10px 0 0 0;
+			}
+		}
+	}
+
+	li.unpublished-row {
+		
+		.page-wrapper {
+			background: #FBF0F1;
+			border: 1px solid #F7D0D4;	
+		}
+	}
+
+	li + li {
+		margin: 20px 0 0 0;
+	}
+
+	.page-wrapper:hover {
+		> .actions {
+			display: block;
+		}
+	}
+}
+
+.add-new-page {
+	padding: 10px 15px;
+	display: inline-block;
+}

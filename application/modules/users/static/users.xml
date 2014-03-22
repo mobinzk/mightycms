@@ -1,0 +1,45 @@
+<template>
+	<section name="default">
+		<input type="text" is_required="true" label="Firstname" name="firstname" />
+		<input type="text" is_required="true" label="Surname" name="surname" />
+		<input type="text" is_required="true" label="Email Address (This will be your username)" name="email" />
+		<input type="text" is_required="true" label="Confirmation Email Address" name="confirm_email" />
+		<input type="password" label="Password" name="password" />
+		<input type="password" label="Confirmation Password" name="confirm_password" />
+
+		<input type="checkbox" label="Please choose what areas the user will have access to:" value="pall" name="pall">
+			<option value="all" name="All areas &amp; features" />
+		</input>
+
+		<input type="checkbox" label="Pages/Sub Pages" value="ppages" name="ppages">			
+			<option value="add_page" name="Adding new Pages/Sub Pages" />
+			<option value="delete_page" name="Deleting Pages/Sub Pages" />
+			<option value="publish_page" name="Publishing &amp; Unpublishing Pages" />
+			<option value="edit_page" name="Editing Pages/Sub Pages" />
+			<option value="sort_page" name="Changing order of Pages" />
+		</input>
+
+		<input type="checkbox" label="Articles" value="particles" name="particles">			
+			<option value="add_article" name="Adding new Articles" />
+			<option value="delete_article" name="Deleting Articles" />
+			<option value="publish_article" name="Publishing &amp; Unpublishing Articles" />
+			<option value="edit_article" name="Editing Articles" />
+		</input>
+
+		<input type="checkbox" label="Users" value="pusers" name="pusers">			
+			<option value="add_user" name="Adding new Users" />
+			<option value="delete_user" name="Deleting Users" />
+			<option value="edit_user" name="Editing Users" />
+			<option value="edit_the_user" name="Just edit his/her details" />
+		</input>
+
+		<input type="checkbox" label="File Manager" value="pfilemanager" name="pfilemanager">			
+			<option value="add_filemanager" name="Adding new files to File Manager" />
+			<option value="delete_filemanager" name="Deleting files from File Manager" />
+		</input>
+
+		<input type="checkbox" label="Snippets/Settings" value="psnippets" name="psnippets">
+			<option value="edit_snippets" name="Editing Snippets/Settings" />
+		</input>
+	</section>	
+</template>

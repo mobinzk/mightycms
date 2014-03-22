@@ -1,0 +1,106 @@
+.login-wrapper {
+	width: 460px;
+	margin: 70px auto 20px;
+	background: #ffffff;
+	@include border-radius(5px);
+	// border: 1px solid #e3e4e8;
+	border-bottom: 2px solid #e3e4e8;
+
+	header {
+		background: #434A54;
+		@include border-radius(5px 5px 0 0);
+		display: block;
+		text-align: center;
+		overflow: hidden;
+
+		.logo {
+			width: 140px;
+			height: 140px;
+			@include border-radius(50%);
+			display: inline-block;
+			background: #fff;
+			margin: 20px 0;
+		}
+	}
+
+	form {
+
+		.error {
+			background: #fbf0f1;
+			padding: 15px 20px;
+			color: #ed5565;
+			font-size: 14px;
+		}
+
+		.valid {
+			background: #f4faee;
+			padding: 15px 20px;
+			color: #9aaa8c;
+			font-size: 14px;
+		}
+
+		input {
+			font-family: $OpenSans;
+			font-size: 14px;
+			outline: none;
+			width: 100%;
+			padding: 10px 10px;
+			border: 2px solid #e3e4e8;
+			@include border-radius(5px);
+		}
+
+		button {
+			font-family: $QuickSand;
+			font-weight: bold;
+			font-size: 14px;
+			background: #ed5565;
+			border: 0;
+			@include border-radius(5px);
+			color: #fff;
+			width: 100%;
+			padding: 15px 0;
+			cursor: pointer;
+			border-bottom: 2px solid #da4453;
+			outline: none;
+			margin: 20px 0 0;
+		}
+
+		ul {
+			padding: 20px 0 15px;
+
+			li {
+				padding: 0 20px 10px 20px;
+			}
+
+			li.remember {
+				label {
+					display: inline-block;
+					font-size: 12px;
+					color: #666;
+				}
+
+				input {
+					width: auto;
+					border: none;
+					padding: 0;
+					display: inline-block;
+				}
+			}
+		}
+
+		.forgot {
+			text-align: right;
+			margin: 20px 0 0 0;
+
+			a {
+				font-size: 12px;
+				color: #51b2cc;
+				display: inline-block;
+			}
+
+			:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}
