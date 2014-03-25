@@ -3,7 +3,7 @@ var URL = {
   create: function($content) {
     
     $.ajax({
-      url: '/mightycms/blog/url',
+      url: '/mightycms/articles/url',
       type: 'post',
       data: 'content=' + $content,
       dataType: 'json',
