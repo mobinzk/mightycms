@@ -36,12 +36,18 @@
 
 <?php
 	$request 	= Mighty::request();
-	$mighty_nav = dbi::getAll("SELECT * FROM `mighty_nav` WHERE `published` = '1'");
+	$mighty_nav = dbi::getAll("SELECT * FROM `mighty_nav` WHERE `published` = '1' AND `parentid` = '0'");
  ?>
 <section class="container">
 	<nav class="main">
 		<ul>
-			<?php foreach ($mighty_nav as $nav) { ?>
+			<?php 
+				foreach ($mighty_nav as $nav) { 
+
+					if($nav->url == Mighty::request()->urlParts[1]) {
+						$mainNav = $nav;
+					}
+				?>
 			<li <?= ($nav->url == Mighty::request()->urlParts[1]) ? 'class="selected"' : ''?>>
 				<a href="/mightycms/<?= $nav->url ?>"><?= $nav->name ?></a>
 			</li>
@@ -62,5 +68,21 @@
 			<?php } ?>
 		</ul>
 	<?php } ?>
+
+	<?php 
+		$mighty_subnav = dbi::getAll("SELECT * FROM `mighty_nav` WHERE `published` = '1' AND `parentid` = $mainNav->id");
+		if($mighty_subnav) {
+	 ?>
+		<ul class="sub-nav-main">
+			<li <?= ($nav->url == Mighty::request()->urlParts[1] && !Mighty::request()->urlParts[2]) ? 'class="selected"' : ''?>>
+				<a href="/mightycms/<?= $mainNav->url ?>"><?= ucwords($mainNav->url) ?></a>
+			</li>
+			<?php foreach ($mighty_subnav as $s){ ?>
+			<li <?= ($s->url == Mighty::request()->urlParts[2]) ? 'class="selected"' : ''?>>
+				<a href="/mightycms/<?= $mainNav->url.'/'.$s->url ?>"><?= ucwords($s->url) ?></a>
+			</li>
+			<?php } ?>
+		</ul>
+		<?php }?>
 
 <div class="contents">
