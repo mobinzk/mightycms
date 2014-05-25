@@ -55,7 +55,7 @@
 				    				`articles` 
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."',
-				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."', 
+				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."', 
 				    				`categoryid` 	= '".$categoryid."',
 				    				`author`		= '".Mighty::Auth()->userId()."',
 				    				`date`			= '".$date."'
@@ -123,7 +123,7 @@
 			    				`articles` 
 			    			SET 
 			    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
-			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."',
+			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."',
 				    			`categoryid` 	= '".$categoryid."',
 			    				`date`			= '".$date."'
 			    			WHERE
@@ -315,7 +315,7 @@
 				    				`articles_categories` 
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
-				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."'
+				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."'
 				    			");
 			    
 
@@ -344,7 +344,7 @@
 			    				`articles_categories` 
 			    			SET 
 			    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
-			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."'
+			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."'
 			    			WHERE
 			    				`categoryid`			= '$id'
 			    			");

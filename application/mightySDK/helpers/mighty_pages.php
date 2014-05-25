@@ -147,7 +147,7 @@
 				    				`pages` 
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
-				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."', 
+				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."', 
 				    				`position` 		= '$position->position', 
 				    				`deletable` 	= '$deletable', 
 				    				`editable` 		= '$editable',
@@ -217,7 +217,7 @@
 			    				`pages` 
 			    			SET 
 			    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
-			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."', 
+			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."', 
 			    				`deletable` 	= '$deletable', 
 			    				`editable` 		= '$editable',
 			    				`publishable` 	= '$publishable',
