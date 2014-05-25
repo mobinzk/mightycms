@@ -70,6 +70,7 @@
 	<?php } ?>
 
 	<?php 
+		if(!$template)
 		$mighty_subnav = dbi::getAll("SELECT * FROM `mighty_nav` WHERE `published` = '1' AND `parentid` = $mainNav->id");
 		if($mighty_subnav) {
 	 ?>

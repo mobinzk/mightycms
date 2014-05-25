@@ -1,6 +1,6 @@
 <?php
 
-	class Blog {
+	class Article {
 
 		public function __construct() {
 		}
@@ -10,7 +10,7 @@
 			return DBi::getAll("SELECT 
 									* 
 								FROM 
-									blog 
+									articles 
 								ORDER BY date DESC");
 		}
 
@@ -52,7 +52,7 @@
 				$date = $date[2].'-'.$date[1].'-'.$date[0];
 			    
 			    $pageid = DBi::query("INSERT INTO 
-				    				`blog` 
+				    				`articles` 
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."',
 				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."', 
@@ -70,7 +70,7 @@
 				$response['ui_alert'] = (object) array(
 					'type' 		=> 'success',
 					'heading' 	=> 'Success!',
-					'message' 	=> 'New article has been added <a href="/mightycms/articles">Return to Blog</a> - 
+					'message' 	=> 'New article has been added <a href="/mightycms/articles">Return to Articles</a> - 
 									<form method="post" action="/mightycms/articles/edit">
 										<input type="hidden" value="edit" name="action">
 										<input type="hidden" value="'.$pageid['id'].'" name="id">
@@ -120,7 +120,7 @@
 				$date = $date[2].'-'.$date[1].'-'.$date[0];
 
 				DBi::query("UPDATE 
-			    				`blog` 
+			    				`articles` 
 			    			SET 
 			    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
 			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."',
@@ -136,7 +136,7 @@
 				$response['ui_alert'] = (object) array(
 					'type' 		=> 'success',
 					'heading' 	=> 'Success!',
-					'message' 	=> 'Your changes have been saved. <a href="/mightycms/articles">Return to Blog</a>',
+					'message' 	=> 'Your changes have been saved. <a href="/mightycms/articles">Return to Articles</a>',
 				);
 
 			}
@@ -145,7 +145,7 @@
 		}
 
 
-		public function addSnippets($fields, $blogid) {
+		public function addSnippets($fields, $articleid) {
 
 			$ignore_fields = array( 'file_upload_list', 
 						'.*_option_.*', 
@@ -169,9 +169,9 @@
 			// Delete existing snippets
 			DBi::query("
 				DELETE FROM 
-					`blog_snippets` 
+					`articles_snippets` 
 				WHERE 
-					`blogid` = '$blogid'
+					`articleid` = '$articleid'
 			");
 
 			foreach ($fields as $key => $val){
@@ -179,18 +179,18 @@
 				if (!preg_match('/^('.implode('|', $ignore_fields).')$/si', $key) & !empty($val)){
 
 					DBi::query("INSERT INTO 
-									`blog_snippets` 
+									`articles_snippets` 
 								SET 
-									`blogid`  = '".$blogid."',
+									`articleid`  = '".$articleid."',
 									`name` = '".dbi::mysqli()->real_escape_string($key)."',
 									`value` = '".dbi::mysqli()->real_escape_string($val)."'
 						");
 
 					$parser = new Markdown;
 					DBi::query("INSERT INTO 
-									`blog_snippets` 
+									`articles_snippets` 
 								SET 
-									`blogid`  = '".$blogid."',
+									`articleid`  = '".$articleid."',
 									`name` = '".dbi::mysqli()->real_escape_string($key)."_html',
 									`value` = '".dbi::mysqli()->real_escape_string($parser->transform($val))."'
 						");
@@ -203,9 +203,9 @@
 		public function delete() {
 			extract($_POST);
 
-			$page = DBi::getRow("SELECT `name` FROM `blog` WHERE id = '$id'");
+			$page = DBi::getRow("SELECT `name` FROM `articles` WHERE id = '$id'");
 
-			DBi::query("DELETE FROM `blog` WHERE `id` = '$id'");
+			DBi::query("DELETE FROM `articles` WHERE `id` = '$id'");
 
 			Mighty::activities()->log('deleted an article ('.stripslashes($page->name).')', 'delete');
 			$response['ui_alert'] = (object) array(
@@ -219,9 +219,9 @@
 
 		public function publish() {
 			extract($_POST);
-			$currentPublished = DBi::getRow("SELECT published, name FROM blog WHERE id = '$id'");
+			$currentPublished = DBi::getRow("SELECT published, name FROM articles WHERE id = '$id'");
 			$published = ($currentPublished->published == '0') ? 1 : 0;
-			DBi::query("UPDATE `blog` SET `published` = '$published' WHERE `id` = '$id'");
+			DBi::query("UPDATE `articles` SET `published` = '$published' WHERE `id` = '$id'");
 
 			if($published == 0) {
 				Mighty::activities()->log('unpublished a page ('.stripslashes($currentPublished->name).')', 'unpublished');
@@ -254,14 +254,14 @@
 										published,
 										date 
 									FROM 
-										`blog` 
+										`articles` 
 									WHERE 
 										`id` = $id");
 
 				$snippets = DBi::getAll("
 					SELECT * 
-					FROM `blog_snippets`
-					WHERE `blogid` = '$id'
+					FROM `articles_snippets`
+					WHERE `articleid` = '$id'
 				");
 
 				if (is_array($snippets)){
@@ -275,7 +275,7 @@
 		}
 
 		public function getField($name, $id){
-			$field = DBi::getRow("SELECT * FROM `blog_snippets` WHERE `blogid` = '$id' AND `name` = '$name'");
+			$field = DBi::getRow("SELECT * FROM `articles_snippets` WHERE `articleid` = '$id' AND `name` = '$name'");
 			return stripslashes($field->value);
 		}
 
@@ -287,7 +287,7 @@
 			return DBi::getAll("SELECT 
 									* 
 								FROM 
-									blog_categories 
+									articles_categories 
 								ORDER BY position DESC");
 		}
 
@@ -299,7 +299,7 @@
 										url,
 										published
 									FROM 
-										`blog_categories` 
+										`articles_categories` 
 									WHERE 
 										`categoryid` = $id");
 
@@ -312,7 +312,7 @@
 			if($name) {
 
 			    $category = DBi::query("INSERT INTO 
-				    				`blog_categories` 
+				    				`articles_categories` 
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
 				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."'
@@ -341,7 +341,7 @@
 			if($name) {
 
 				DBi::query("UPDATE 
-			    				`blog_categories` 
+			    				`articles_categories` 
 			    			SET 
 			    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
 			    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty::urlify($url))."'
@@ -365,9 +365,9 @@
 		public function deleteCategory() {
 			extract($_POST);
 
-			$page = DBi::getRow("SELECT `name` FROM `blog_categories` WHERE categoryid = '$id'");
+			$page = DBi::getRow("SELECT `name` FROM `articles_categories` WHERE categoryid = '$id'");
 
-			DBi::query("DELETE FROM `blog_categories` WHERE `categoryid` = '$id'");
+			DBi::query("DELETE FROM `articles_categories` WHERE `categoryid` = '$id'");
 
 			Mighty::activities()->log('deleted a category ('.stripslashes($page->name).')', 'delete');
 			$response['ui_alert'] = (object) array(
@@ -381,9 +381,9 @@
 
 		public function publishCategory() {
 			extract($_POST);
-			$currentPublished = DBi::getRow("SELECT published, name FROM blog_categories WHERE categoryid = '$id'");
+			$currentPublished = DBi::getRow("SELECT published, name FROM articles_categories WHERE categoryid = '$id'");
 			$published = ($currentPublished->published == '0') ? '1' : '0';
-			DBi::query("UPDATE `blog_categories` SET `published` = '$published' WHERE `categoryid` = '$id'");
+			DBi::query("UPDATE `articles_categories` SET `published` = '$published' WHERE `categoryid` = '$id'");
 
 			if($published == 0) {
 				Mighty::activities()->log('unpublished a category ('.stripslashes($currentPublished->name).')', 'unpublished');

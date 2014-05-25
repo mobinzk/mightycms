@@ -5,9 +5,7 @@
 <?php }?>
 
 <?php 
-	$blog = Mighty::Blog()->getAll();
-
-	if($blog) {
+	if($articles) {
 ?>
 <div class="uim-table-wrapper blog">
 	<table class="uim-table">
@@ -16,7 +14,7 @@
 			<th>Date</th>
 			<th></th>
 		</tr>
-		<?php foreach ($blog as $article) { ?>
+		<?php foreach ($articles as $article) { ?>
 		<tr>
 			<td><?= $article->name ?></td>
 			<td><?php

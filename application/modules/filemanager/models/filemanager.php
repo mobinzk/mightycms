@@ -7,7 +7,7 @@
 		}
 		
 		public static function getAll() {
-			$data = DBi::getAll('SELECT * FROM `filemanager` ORDER BY id DESC');
+			$data = DBi::getAll('SELECT * FROM `mighty_filemanager` ORDER BY id DESC');
 
 			if($data)
 			return $data;
@@ -43,7 +43,7 @@
 			// ====== Handle file uploads
 			if($fields['files']) {
 				$id = DBi::query("INSERT INTO 
-					    				`filemanager` 
+					    				`mighty_filemanager` 
 					    			SET 
 					    				`url` 			= '".dbi::mysqli()->real_escape_string($fields['files'])."'
 					    			");
@@ -68,9 +68,9 @@
 
 		public function delete() {
 			extract($_POST);
-			$file = DBi::getRow("SELECT `url` FROM `filemanager` WHERE id = '$id'");
+			$file = DBi::getRow("SELECT `url` FROM `mighty_filemanager` WHERE id = '$id'");
 
-			DBi::query("DELETE FROM `filemanager` WHERE `id` = '$id'");
+			DBi::query("DELETE FROM `mighty_filemanager` WHERE `id` = '$id'");
 
 			Mighty::activities()->log('deleted a file ('.stripslashes($file->url).')', 'delete');
 			$response['ui_alert'] = (object) array(

@@ -78,7 +78,7 @@
 
 				 // Insert new permission sets
 				 DBi::query("INSERT INTO
-				 						`permissions`
+				 						`mighty_permissions`
 				 					SET
 				 						`add_page` 			= '".$add_page."',
 				 						`delete_page` 		= '".$delete_page."',
@@ -187,11 +187,11 @@
 				$edit_snippets 	= ($edit_snippets) ? '1' : '0';
 
 				 // Delete existing permissions
-				 DBi::query("DELETE FROM `permissions` WHERE `userid` = '$id'");
+				 DBi::query("DELETE FROM `mighty_permissions` WHERE `userid` = '$id'");
 
 				 // Insert new permission sets
 				 DBi::query("INSERT INTO
-				 						`permissions`
+				 						`mighty_permissions`
 				 					SET
 				 						`add_page` 			= '".$add_page."',
 				 						`delete_page` 		= '".$delete_page."',
@@ -280,7 +280,7 @@
 			return DBi::getRow("SELECT 
 									*  
 								FROM 
-									`permissions` 
+									`mighty_permissions` 
 								WHERE 
 									`userid` = $userid");
 		}

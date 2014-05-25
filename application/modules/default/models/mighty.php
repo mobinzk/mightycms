@@ -55,8 +55,8 @@
 			return new Pages;
 		}
 
-		public static function Blog(){
-			return new Blog;
+		public static function Article(){
+			return new Article;
 		}
 
 		public static function Users(){

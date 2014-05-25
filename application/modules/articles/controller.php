@@ -17,14 +17,14 @@
 			if ($_POST){
 				switch ($_POST['action']){
 					case 'delete':
-							$response = Mighty::Blog()->delete($_POST['id']);
+							$response = Mighty::Article()->delete($_POST['id']);
 							if ($response->ui_alert){
 								$data['response'] = $response;
 								$data['id'] 	  = $response->id;
 							}
 						break;
 					case 'publish':
-							$response = Mighty::Blog()->publish($_POST['id']);
+							$response = Mighty::Article()->publish($_POST['id']);
 							if ($response->ui_alert){
 								$data['response'] = $response;
 								$data['id'] 	  = $response->id;
@@ -32,6 +32,8 @@
 						break;
 				}
 			}
+
+			$data['articles'] = Mighty::Article()->getAll();
 
 			
 			$this->view->set('data', $data);
@@ -48,7 +50,7 @@
 
 			$data['additional'] = array(
 				'js' => array(
-					'/mightycms/'.STATIC_DIR.'/js/blog'
+					'/mightycms/'.STATIC_DIR.'/js/article'
 				)
 			);
 
@@ -61,7 +63,7 @@
 
 
 			if($_POST) {
-				$response = Mighty::Blog()->addNewArticle();
+				$response = Mighty::Article()->addNewArticle();
 				if ($response->ui_alert){
 					$data['response'] = $response;
 					$data['id'] 	  = $response->id;
@@ -82,12 +84,12 @@
 
 			$data['additional'] = array(
 				'js' => array(
-					'/mightycms/'.STATIC_DIR.'/js/blog'
+					'/mightycms/'.STATIC_DIR.'/js/article'
 				)
 			);
 
 			$data['id'] 		= $_POST['id'];
-			$data['article']		= Mighty::Blog()->getArticle($data['id']);
+			$data['article']		= Mighty::Article()->getArticle($data['id']);
 
 			$template = new template('article.xml');
 
@@ -101,8 +103,8 @@
 
 
 			if($_POST) {
-				$response = Mighty::Blog()->editArticle();
-				$data['article'] = Mighty::Blog()->getArticle($data['id']);
+				$response = Mighty::Article()->editArticle();
+				$data['article'] = Mighty::Article()->getArticle($data['id']);
 
 				if ($response->ui_alert){
 					$data['response'] = $response;
@@ -120,7 +122,7 @@
 			$url 			= $_POST['content'];
 			$array['url'] 	=  Mighty::urlify($url);
 
-			$result = DBi::getRow('SELECT url, id FROM `blog` WHERE `url` = "'.$array['url'].'" ');
+			$result = DBi::getRow('SELECT url, id FROM `articles` WHERE `url` = "'.$array['url'].'" ');
 
 			$array['result'] = $result;
 			$array['id'] = $result->id;
@@ -133,7 +135,7 @@
 			$url 			= $_POST['content'];
 			$array['url'] 	=  Mighty::urlify($url);
 
-			$result = DBi::getRow('SELECT url, categoryid FROM `blog_categories` WHERE `url` = "'.$array['url'].'" ');
+			$result = DBi::getRow('SELECT url, categoryid FROM `articles_categories` WHERE `url` = "'.$array['url'].'" ');
 
 			$array['result'] = $result;
 			$array['id'] = $result->id;
@@ -149,18 +151,17 @@
 			
 			$data['permissions'] = Mighty::Users()->getPermissions();
 
-
 			if ($_POST){
 				switch ($_POST['action']){
 					case 'delete':
-							$response = Mighty::Blog()->deleteCategory($_POST['id']);
+							$response = Mighty::Article()->deleteCategory($_POST['id']);
 							if ($response->ui_alert){
 								$data['response'] = $response;
 								$data['id'] 	  = $response->id;
 							}
 						break;
 					case 'publish':
-							$response = Mighty::Blog()->publishCategory($_POST['id']);
+							$response = Mighty::Article()->publishCategory($_POST['id']);
 							if ($response->ui_alert){
 								$data['response'] = $response;
 								$data['id'] 	  = $response->id;
@@ -169,6 +170,7 @@
 				}
 			}
 
+			$data['categories'] = Mighty::Article()->getCategories();
 
 			
 			$this->view->set('data', $data);
@@ -198,7 +200,7 @@
 
 
 			if($_POST) {
-				$response = Mighty::Blog()->addNewCategory();
+				$response = Mighty::Article()->addNewCategory();
 				if ($response->ui_alert){
 					$data['response'] = $response;
 					$data['id'] 	  = $response->id;
@@ -224,7 +226,7 @@
 			);
 
 			$data['id'] 		= $_POST['id'];
-			$data['article']		= Mighty::Blog()->getCategory($data['id']);
+			$data['article']		= Mighty::Article()->getCategory($data['id']);
 
 			$template = new template('article.category.xml');
 
@@ -238,8 +240,8 @@
 
 
 			if($_POST) {
-				$response = Mighty::Blog()->editCategory();
-				$data['article'] = Mighty::Blog()->getCategory($data['id']);
+				$response = Mighty::Article()->editCategory();
+				$data['article'] = Mighty::Article()->getCategory($data['id']);
 
 				if ($response->ui_alert){
 					$data['response'] = $response;

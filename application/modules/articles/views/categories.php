@@ -5,8 +5,6 @@
 <?php }?>
 
 <?php 
-	$categories = Mighty::Blog()->getCategories();
-
 	if($categories) {
 ?>
 <div class="uim-table-wrapper blog">

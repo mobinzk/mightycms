@@ -7,7 +7,7 @@
 		}
 		
 		public function getAll($limit = '10') {
-			$data = DBi::getAll("SELECT * FROM `activities` ORDER BY id DESC LIMIT $limit");
+			$data = DBi::getAll("SELECT * FROM `mighty_activities` ORDER BY id DESC LIMIT $limit");
 
 			if($data)
 			return $data;
@@ -60,7 +60,7 @@
 		    $user   = Mighty::Auth()->getUser()->username;
 		    $time = time();
 
-		    DBi::query("INSERT INTO `activities` SET `user` = '".$user."', `userid` = '".$userid."', `message` = '".$message."', `action` = '".$action."', `time` = '".$time."' ");
+		    DBi::query("INSERT INTO `mighty_activities` SET `user` = '".$user."', `userid` = '".$userid."', `message` = '".$message."', `action` = '".$action."', `time` = '".$time."' ");
 		}	
 
 
