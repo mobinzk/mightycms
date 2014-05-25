@@ -120,7 +120,7 @@
 		public function makeURL(){
 			
 			$url 			= $_POST['content'];
-			$array['url'] 	=  Mighty::urlify($url);
+			$array['url'] 	=  Mighty_Utilities::urlify($url);
 
 			$result = DBi::getRow('SELECT url, id FROM `articles` WHERE `url` = "'.$array['url'].'" ');
 
@@ -133,7 +133,7 @@
 		public function makeURLCategory(){
 			
 			$url 			= $_POST['content'];
-			$array['url'] 	=  Mighty::urlify($url);
+			$array['url'] 	=  Mighty_Utilities::urlify($url);
 
 			$result = DBi::getRow('SELECT url, categoryid FROM `articles_categories` WHERE `url` = "'.$array['url'].'" ');
 

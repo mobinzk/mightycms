@@ -1,4 +1,4 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <?php if($permissions->add_article) { ?>
 <a class="uim-button green add-new-page" href="/mightycms/articles/add-a-new-category">Add a new category</a>
@@ -51,4 +51,4 @@
 <a class="uim-button green add-new-page" href="/mightycms/articles/add-a-new-category">Add a new category</a>
 <?php }?>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

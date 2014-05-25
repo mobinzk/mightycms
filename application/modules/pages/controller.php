@@ -37,6 +37,8 @@
 						break;
 				}
 			}
+
+			$data['pages'] = Mighty::Pages()->getPages(0);
 			
 			$this->view->set('data', $data);
 			$this->view->set('view', 'pages.php');
@@ -131,7 +133,7 @@
 		public function makeURL(){
 			
 			$url 			= $_POST['content'];
-			$array['url'] 	=  Mighty::urlify($url);
+			$array['url'] 	=  Mighty_Utilities::urlify($url);
 
 			$result = DBi::getRow('SELECT url, id FROM `pages` WHERE `url` = "'.$array['url'].'" ');
 

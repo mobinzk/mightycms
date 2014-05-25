@@ -124,7 +124,7 @@
 				$input_file = $file['tmp_name'];
 
 				// Urlify the output file 
-				$output_file = $options->upload_dir.'/'.Mighty::urlify($filename).'.'.strtolower($extension);
+				$output_file = $options->upload_dir.'/'.Mighty_Utilities::urlify($filename).'.'.strtolower($extension);
 
 				// Upload 
 				$upload_response = $this->moveUploadedFile($input_file, $output_file, $options->overwrite_existing_file);

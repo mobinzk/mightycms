@@ -1,13 +1,9 @@
 <?php
 
-	class Mighty {
-
-		public static function request(){
-			return new mighty_request;
-		}
-
+	class Mighty_Utilities {
+		
 		public static function breadcrumbs($arrayB = ''){
-			$url = self::request();
+			$url = Mighty::request();
 			$url = $url->urlParts;
 
 			if(is_array($url)) {
@@ -49,39 +45,6 @@
 			return $image;
 		}
 		
-
-
-		public static function Pages(){
-			return new Pages;
-		}
-
-		public static function Article(){
-			return new Article;
-		}
-
-		public static function Users(){
-			return new Users;
-		}
-
-		public static function Snippets(){
-			return new Snippets;
-		}
-
-		public static function Uploadit(){
-			return new Mighty_Upload;
-		}
-
-		public static function Filemanager(){
-			return new Filemanager;
-		}
-
-		public static function Activities(){
-			return new Mighty_Activities;
-		}
-
-		public static function Auth(){
-			return new Mighty_Auth;
-		}
 	}
 
 ?>

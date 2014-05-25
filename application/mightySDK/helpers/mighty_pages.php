@@ -1,6 +1,6 @@
 <?php
 
-	class Pages {
+	class Mighty_Pages {
 
 		public function __construct() {
 		}

@@ -1,4 +1,4 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <div class="uim-table-wrapper users">
 	<table class="uim-table">
@@ -30,4 +30,4 @@
 	</table>
 </div>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

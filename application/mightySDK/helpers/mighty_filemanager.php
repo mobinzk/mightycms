@@ -1,6 +1,6 @@
 <?php
 
-	class Filemanager {
+	class Mighty_Filemanager {
 
 		public function __construct() {
 		

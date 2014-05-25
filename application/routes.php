@@ -76,7 +76,12 @@
 		'action' => 'credits'
 	));
 
+	Pocket::setRoute('/markdownHTML', array(
+		'module' => 'markdown',
+		'action' => 'markdownHTML'
+	));
+
 	// Pocket::setRoute('/');
 
-	Pocket::setRoute('/<:slug>');
+	// Pocket::setRoute('/<:slug>');
 ?>

@@ -1,6 +1,6 @@
 <?php 
 
-	class Default_Controller extends Controller {
+	class Markdown_Controller extends Controller {
 
 		public function __construct(){
 			parent::__construct();

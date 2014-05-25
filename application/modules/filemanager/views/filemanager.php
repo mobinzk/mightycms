@@ -1,4 +1,4 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <div class="uim-table-wrapper">
 	<?php if($permissions->add_filemanager) { ?>
@@ -21,7 +21,7 @@
 		<?php foreach ($files as $file) { ?>
 		<tr>
 			<td>
-				<?php if(Mighty::isimage(MIGHTY_CONFIG_DIR.$file->url)) { ?>
+				<?php if(Mighty_Utilities::isimage(MIGHTY_CONFIG_DIR.$file->url)) { ?>
 					<a href="<?= $file->url ?>" target="_blank"><img class="pimage" src="<?= $file->url ?>" alt=""></a>
 				<?php } ?>
 			</td>
@@ -42,4 +42,4 @@
 	<?php }?>
 </div>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

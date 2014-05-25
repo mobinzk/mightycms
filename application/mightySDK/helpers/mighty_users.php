@@ -1,6 +1,6 @@
 <?php
 
-	class Users {
+	class Mighty_Users {
 		
 		public static function getAll(){
 			

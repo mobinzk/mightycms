@@ -1,12 +1,12 @@
 <?php
 
-	class Snippets {
+	class Mighty_Snippets {
 
 		public function __construct() {
 		
 		}
 		
-		public static function getAll() {
+		public function getAll() {
 			$data = DBi::getAll('SELECT * FROM `snippets`');
 
 			if($data)

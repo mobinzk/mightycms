@@ -1,4 +1,4 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <form action="" method="post" class="validate" enctype="multipart/form-data">
 	<ul class="uim-form">
@@ -116,4 +116,4 @@
 
 </form>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

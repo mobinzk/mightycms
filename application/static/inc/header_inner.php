@@ -56,7 +56,7 @@
 	</nav>
 
 <h1 class="heading">
-	<?= Mighty::breadcrumbs($breadcrumbs)?>
+	<?= Mighty_Utilities::breadcrumbs($breadcrumbs)?>
 </h1>
 
 	<?php if ($template && count($template->getSections()) > 1){ ?>
