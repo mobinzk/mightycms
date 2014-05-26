@@ -60,7 +60,7 @@
 		    $user   = Mighty::Auth()->getUser()->username;
 		    $time = time();
 
-		    DBi::query("INSERT INTO `mighty_activities` SET `user` = '".$user."', `userid` = '".$userid."', `message` = '".$message."', `action` = '".$action."', `time` = '".$time."' ");
+		    DBi::query("INSERT INTO `mighty_activities` SET `user` = '".$user."', `userid` = '".$userid."', `message` = '".dbi::mysqli()->real_escape_string($message)."', `action` = '".$action."', `time` = '".$time."' ");
 		}	
 
 
