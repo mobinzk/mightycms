@@ -14,6 +14,10 @@
 			return new Mighty_Article;
 		}
 
+		public static function Shop(){
+			return new Mighty_Shop;
+		}
+
 		public static function Users(){
 			return new Mighty_Users;
 		}

@@ -721,11 +721,11 @@ input[type="file"] {
 	color: #666;
 	font-weight: 600;
 
-	tr:nth-child(even) {
+	tr:nth-child(odd) {
 		background: #fff;
 	}
 
-	tr + tr {
+	tr {
 		border-bottom: 1px solid #e3e4e8;
 	}
 
@@ -738,6 +738,11 @@ input[type="file"] {
 		border-bottom: 2px solid #e3e4e8;
 		padding: 15px 15px;
 		@include border-radius(5px 5px 0 0);
+		background: #F6F8FA;
+	}
+
+	.ui-sortable-helper {
+		background: #fff;
 	}
 
 	a {
@@ -779,6 +784,13 @@ input[type="file"] {
 	.pimage {
 		max-width: 100px;
 		max-height: 100px;
+	}
+
+	.move {
+		padding: 19px 20px;
+		margin: -8px -15px -8px 10px;
+		height: 44px;
+		@include border-radius(0);
 	}
 }
 

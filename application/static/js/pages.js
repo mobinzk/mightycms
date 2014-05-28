@@ -5,7 +5,6 @@ $(function(){
         handle: '.move',
         placeholder: 'uim-state-highlight',
         forcePlaceholderSize: true,
-        // connectWith: "ul",
         start: function(event, ui){
            
         },
@@ -54,6 +53,6 @@ var URL = {
 
 $('#name').keyup(function(e) {
     $content = $(this).val();
-    URL.create($content);
+    URL.create(escape($content));
 });
 // ======== URL

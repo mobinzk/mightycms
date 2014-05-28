@@ -60,7 +60,7 @@
 									<input type="hidden" value="publish" name="action">
 									<input type="hidden" value="'.$page->id.'" name="id">';
 
-									$content .= '<button type="submit" class="uim-button published '.($page->published ? "green" : "red").'">Published</button>';
+									$content .= '<button type="submit" class="uim-button published '.($page->published ? "green" : "red").'">'.($page->published ? "Published" : "Unpublished").'</button>';
 
 								$content .= '</form>';
 								}

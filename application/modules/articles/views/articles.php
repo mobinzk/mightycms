@@ -14,6 +14,7 @@
 			<th>Date</th>
 			<th></th>
 		</tr>
+		<tbody>
 		<?php foreach ($articles as $article) { ?>
 		<tr>
 			<td><?= $article->name ?></td>
@@ -34,7 +35,7 @@
 				<form action="" method="POST">
 					<input type="hidden" value="publish" name="action">
 					<input type="hidden" value="<?= $article->id ?>" name="id">
-					<button type="submit" class="uim-button published <?= ($article->published ? "green" : "red")?>">Published</button>
+					<button type="submit" class="uim-button published <?= ($article->published ? "green" : "red")?>"><?= ($article->published ? "Published" : "Unpublished")?></button>
 				</form>
 				<?php } ?>
 				<?php if($permissions->edit_article) { ?>
@@ -47,6 +48,7 @@
 			</td>
 		</tr>
 		<?php } ?>
+		</tbody>
 
 	</table>
 </div>

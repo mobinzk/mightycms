@@ -116,7 +116,7 @@ $('form.validate').on('click', 'button[type="submit"]', function(e){
 
 });
 
-$('.pages, .blog, .users').on('click', '.delete', function(e){
+$('.pages, .blog, .users, .shop').on('click', '.delete', function(e){
     if (!confirm('Are you sure you want to delete this?')){
         e.preventDefault();
     }

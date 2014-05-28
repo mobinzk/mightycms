@@ -28,6 +28,6 @@ var URL = {
 
 $('#name').keyup(function(e) {
     $content = $(this).val();
-    URL.create($content);
+    URL.create(escape($content));
 });
 // ======== URL
