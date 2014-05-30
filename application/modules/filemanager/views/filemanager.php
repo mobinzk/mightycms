@@ -18,6 +18,7 @@
 			<th>URL</th>
 			<th class="action"></th>
 		</tr>
+		<tbody>
 		<?php foreach ($files as $file) { ?>
 		<tr>
 			<td>
@@ -38,6 +39,7 @@
 			</td>
 		</tr>
 		<?php } ?>
+		</tbody>
 	</table>
 	<?php }?>
 </div>

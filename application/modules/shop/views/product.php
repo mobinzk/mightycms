@@ -27,14 +27,22 @@
                                         echo '<li>';
                                             echo '<section class="group">';
                                                 foreach ($input->input as $group_input){
-                                                    echo $template->buildInput($group_input, ($product->fields->{$group_input->attr->name} ? $product->fields->{$group_input->attr->name} : $product->{$group_input->attr->name}));
+                                                    echo $template->buildInput($group_input, (Mighty::Shop()->getField($group_input->attr->name, $product->id) ? Mighty::Shop()->getField($group_input->attr->name, $product->id) : $page->{$group_input->attr->name}));
+                                                    // echo $template->buildInput($group_input, ($product->fields->{$group_input->attr->name} ? $product->fields->{$group_input->attr->name} : $product->{$group_input->attr->name}));
                                                 }
                                             echo '</section>';
                                         echo '</li>';
                                     break;
                                     default:
                                         echo '<li>';
-                                                echo $template->buildInput($input, ($product->fields->{$input->attr->name} ? $product->fields->{$input->attr->name} : $product->{$input->attr->name}));
+                                                    if (!$value = Mighty::Shop()->getField($input->attr->name, $id)){
+                                                       $value = $product->{$input->attr->name};
+                                                    }
+                                                    if ($input->attr->data_link_field){
+                                                        $value = $product->{$input->attr->data_link_field};
+                                                    }
+                                                    echo $template->buildInput($input, $value);
+                                                // echo $template->buildInput($input, ($product->fields->{$input->attr->name} ? $product->fields->{$input->attr->name} : $product->{$input->attr->name}));
                                         echo '</li>';
                                     break;
                                 }

@@ -103,8 +103,6 @@
 
 			$data['default_section'] = $data['sections'][0]->name;
 
-			if($data['id'])
-			$data['breadcrumbs'] = array($data['product']->name);
 
 
 			if($_POST) {
@@ -115,6 +113,10 @@
 					$data['response'] = $response;
 				}
 			}
+
+			if($data['id'])
+			$data['breadcrumbs'] = array($data['product']->name);
+
 			
 			$this->view->set('data', $data);
 			$this->view->set('view', 'product.php');

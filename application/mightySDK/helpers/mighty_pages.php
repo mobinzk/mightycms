@@ -157,8 +157,11 @@
 				    				$parentid
 				    			");
 
+			    $fields['template_variation_options_END_data_link_value'] = $pageid['id'];
+
 
 			    $this->addSnippets($fields, $pageid['id']);
+				$this->saveTemplateVariations($fields);
 
 			    
 			    $response['id'] = $pageid['id'];

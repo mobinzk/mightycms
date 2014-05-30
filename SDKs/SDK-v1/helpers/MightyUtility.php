@@ -31,7 +31,7 @@
 			if(count($parts) > 0) {
 				$checkURL = $this->checkURL($return['parts']);
 
-				if($checkURL == 'blog_inner' || $checkURL == 'blog') {
+				if($checkURL == 'blog_inner' || $checkURL == 'blog'  || $checkURL == 'products' || $checkURL == 'product') {
 					$return['temp'] = $checkURL;
 				}
 			} else {
@@ -48,28 +48,49 @@
 
 		public function checkURL($urls){
 			if(count($urls) == 1) {
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[0].'" AND parentid IS NULL');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
 			} else if(count($urls) == 2) {
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[0].'" AND parentid IS NULL');
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[1].'" AND parentid ="'.$query->id.'"');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[1].'" AND parentid ="'.$query->id.'"');
 
 				// Check if it's on blog
 				if(!$query) {
-					$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[0].'" AND parentid IS NULL');
-					$query = DBi::getRow('SELECT * FROM articles WHERE url ="'.$urls[1].'"');
+					$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+					$query = DBi::getRow('SELECT * FROM `articles` WHERE `url` ="'.$urls[1].'"');
 					if($query) {
 						$query = 'blog_inner';
 					}
 				}
+
+				// Check for product categories
+				if(!$query) {
+					$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+					$query = DBi::getRow('SELECT * FROM `shop_products_categories` WHERE `url` ="'.$urls[1].'"');
+					if($query) {
+						$query = 'products';
+					}
+				}
+
+
 			} else if(count($urls) == 3) {
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[0].'" AND parentid IS NULL');
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[1].'" AND parentid ="'.$query->id.'"');
-				$query = DBi::getRow('SELECT * FROM pages WHERE url ="'.$urls[2].'" AND parentid ="'.$query->id.'"');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[1].'" AND parentid ="'.$query->id.'"');
+				$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[2].'" AND parentid ="'.$query->id.'"');
 
 				// Check if it's next page or category
 				if(!$query && ($urls[1] == 'page' || $urls[1] == 'category')) {
 					$query = 'blog';
 				}
+
+				// Check if it's product page
+				if(!$query) {
+					$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+					$query = DBi::getRow('SELECT * FROM `shop_products_categories` WHERE `url` ="'.$urls[1].'"');
+					$query = DBi::getRow('SELECT * FROM `shop_products` WHERE `url` ="'.$urls[2].'" AND `categoryid` = '.$query->categoryid.' ');
+					$query = 'product';
+				}
+
+
 			}
 
 			return $query;

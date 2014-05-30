@@ -59,7 +59,7 @@
 												`shop_products` 
 										ORDER BY 
 												position 
-										DESC");
+										DESC LIMIT 0,1");
 			    
 			    $pageid = DBi::query("INSERT INTO 
 				    				`shop_products` 
@@ -70,10 +70,10 @@
 				    				`categoryid` 	= '".$categoryid."'
 				    			");
 
+			    $fields['template_variation_options_END_data_link_value'] = $pageid['id'];
 
-			    $this->addSnippets($fields, $pageid['id']);
-
-			    
+			    $this->addSnippets($fields, $pageid['id']);			    
+				Mighty::Pages()->saveTemplateVariations($fields);
 
 				Mighty::activities()->log('added a new product ('.stripslashes($name).')', 'add');
 				$response['ui_alert'] = (object) array(
@@ -133,13 +133,13 @@
 				    			SET 
 				    				`name` 			= '".dbi::mysqli()->real_escape_string($name)."', 
 				    				`url` 			= '".dbi::mysqli()->real_escape_string(Mighty_Utilities::urlify($url))."', 
-				    				`position` 		= '$position->position',
 				    				`categoryid` 	= '".$categoryid."'
 				    			WHERE
 			    					`id`			= '$id'
 				    			");
 
 			    $this->addSnippets($fields, $id);
+				Mighty::Pages()->saveTemplateVariations($fields);
 
 				Mighty::activities()->log('updated a product ('.stripslashes($name).')', 'update');
 				$response['ui_alert'] = (object) array(
@@ -544,14 +544,14 @@
 			    			");
 
 
-			    $this->addCategorySnippets($fields, $categoryid['id']);
+			    $this->addCategorySnippets($fields, $id);
 
 
 				Mighty::activities()->log('updated a category ('.stripslashes($name).')', 'update');
 				$response['ui_alert'] = (object) array(
 					'type' 		=> 'success',
 					'heading' 	=> 'Success!',
-					'message' 	=> 'Your changes have been saved. <a href="/mightycms/blog/categories">Return to Categories</a>',
+					'message' 	=> 'Your changes have been saved. <a href="/mightycms/shop/categories">Return to Categories</a>',
 				);
 
 			}

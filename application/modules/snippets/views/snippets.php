@@ -7,6 +7,7 @@
 			<th>Description</th>
 			<th class="action"></th>
 		</tr>
+		<tbody>
 		<?php 
 			if($snippets)
 			foreach ($snippets as $Snippet) { ?>
@@ -24,6 +25,7 @@
 			</td>
 		</tr>
 		<?php } ?>
+		</tbody>
 	</table>
 </div>
 

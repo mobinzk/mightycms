@@ -58,23 +58,25 @@
 
 		public function snippets($pageid) {
 
-			if($pageid)
-			$data = DBi::getAll("SELECT 
-						name,
-						value
-					FROM 
-						`page_snippets`
-					WHERE 
-						`pageid` = '$pageid'
-					");
+			if($pageid) {
+				$data = DBi::getAll("SELECT 
+							name,
+							value
+						FROM 
+							`page_snippets`
+						WHERE 
+							`pageid` = '$pageid'
+						");
 
-			if ($data){
-				foreach ($data as $snippet){
-					$response[$snippet->name] = stripslashes($snippet->value);
+				if ($data){
+					foreach ($data as $snippet){
+						$response[$snippet->name] = stripslashes($snippet->value);
+					}
+
+					return (object) $response;
 				}
-			}
 
-			return (object) $response;
+			}
 
 		}
 

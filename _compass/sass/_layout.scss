@@ -162,7 +162,8 @@ body {
 	background: #fff8f9;
 }
 
-.add-new-item {
+.add-new-item,
+.add-variation {
 	padding: 10px 15px;
 	display: inline-block;
 }
@@ -576,24 +577,52 @@ ul.uim-form {
 					display: none;
 				}
 
-
-				.actions {
-					position: absolute;
-					right: 110px;
-					top: 8px;
-
-					.uim-button {
-						font-size: 12px;
-						padding: 5px 10px 4px;
-					}
-
-					.delete {
-						margin: 0 0 0 5px;
-					}
-				}
-
 			}
 
+			.actions {
+				position: absolute;
+				right: 110px;
+				top: 8px;
+
+				.uim-button {
+					font-size: 12px;
+					padding: 5px 10px 4px;
+				}
+
+				.delete {
+					margin: 0 0 0 5px;
+				}
+			}
+
+			.ui_select_variations {
+				li {
+					.actions {
+						right: 60px;
+					}
+
+					background: #F6F8FA;
+					@include border-radius(5px);
+					border: 1px solid #E3E4E8;
+					border-bottom: 2px solid #E3E4E8;
+					position: relative;
+					margin: 10px 0 0;
+
+					.name {
+						padding: 12px 20px 11px;
+						font-size: 14px;
+						color: #666;
+						font-weight: 600;
+						display: inline-block;
+					}
+				}
+			}
+
+		}
+	}
+
+	.ui_input_wrapper {
+		select {
+			margin: 10px 0;
 		}
 	}
 

@@ -7,6 +7,7 @@
 	include 'helpers/MightyArticles.php';
 	include 'helpers/MightySnippets.php';
 	include 'helpers/MightyUtility.php';
+	include 'helpers/MightyShop.php';
 
 
 	class mightySDK {
@@ -17,6 +18,7 @@
 			$this->articles = new MightyArticles;
 			$this->snippets = new MightySnippets;
 			$this->utility = new MightyUtility;
+			$this->shop = new MightyShop;
 		}
 
 	}

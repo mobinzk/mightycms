@@ -480,6 +480,10 @@
 					switch ($input->attr->type) {
 						case 'select':
 
+							if ($input->attr->variations == true){
+								$content .= '<span class="uim-button green add-variation">Add</span>';
+							}
+							
 							$content .= '<select name="'.$field_name.'" id="'.$field_name.'">';
 							$content .= '<option value="" selected="selected">Select an item</option>';
 
@@ -514,7 +518,7 @@
 								} else {
 									$value = explode(',', $value);
 								}
-
+	
 								$content .= '<ul class="ui_select_variations">';
 
 									$count = 0;
@@ -523,8 +527,9 @@
 
 										if (array_key_exists($val, $values)){
 											$content .= '<li data-val="'.$val.'" data-text="'.$values[$val].'">'.
-															'<span class="label">'.$values[$val].'</span>'.
-															'<span class="select remove_variation">Remove</span>'.
+															'<span class="name">'.$values[$val].'</span>'.
+															'<span class="actions"><a href="#" class="uim-button delete red remove_variation">Delete</a></span>'.
+                        									'<div class="move"><span class="icon-move"></span></div>'.
                             								'<input type="hidden" name="'.$field_name.'_select_variation_'.$count.'" value="'.$val.'" />'.
 														'</li>';
 										}
@@ -532,10 +537,6 @@
 									}
 
 								$content .= '</ul>';
-
-								$content .= '<span class="ui_select button add_variation">';
-									$content .= '<span class="text">Add</span>';
-								$content .= '</span>';
 
 							}
 
