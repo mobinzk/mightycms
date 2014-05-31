@@ -1,13 +1,11 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <?php if($permissions->add_article) { ?>
 <a class="uim-button green add-new-page" href="/mightycms/articles/new">Add a new article</a>
 <?php }?>
 
 <?php 
-	$blog = Mighty::Blog()->getAll();
-
-	if($blog) {
+	if($articles) {
 ?>
 <div class="uim-table-wrapper blog">
 	<table class="uim-table">
@@ -16,7 +14,8 @@
 			<th>Date</th>
 			<th></th>
 		</tr>
-		<?php foreach ($blog as $article) { ?>
+		<tbody>
+		<?php foreach ($articles as $article) { ?>
 		<tr>
 			<td><?= $article->name ?></td>
 			<td><?php
@@ -36,7 +35,7 @@
 				<form action="" method="POST">
 					<input type="hidden" value="publish" name="action">
 					<input type="hidden" value="<?= $article->id ?>" name="id">
-					<button type="submit" class="uim-button published <?= ($article->published ? "green" : "red")?>">Published</button>
+					<button type="submit" class="uim-button published <?= ($article->published ? "green" : "red")?>"><?= ($article->published ? "Published" : "Unpublished")?></button>
 				</form>
 				<?php } ?>
 				<?php if($permissions->edit_article) { ?>
@@ -49,6 +48,7 @@
 			</td>
 		</tr>
 		<?php } ?>
+		</tbody>
 
 	</table>
 </div>
@@ -59,4 +59,4 @@
 <a class="uim-button green add-new-page" href="/mightycms/articles/new">Add a new article</a>
 <?php }?>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

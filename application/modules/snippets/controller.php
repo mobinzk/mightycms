@@ -22,6 +22,8 @@
 			}
 
 			$data['breadcrumbs'] = array('settings');
+
+			$data['snippets'] = Mighty::Snippets()->getAll();
 			
 			$this->view->set('data', $data);
 			$this->view->set('view', 'snippets.php');

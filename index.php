@@ -6,6 +6,8 @@
 	
 	include_once 'system/bootstrap.php';
 
+	include_once 'application/mightySDK/mighty.php';
+
 	/**
 	 * Set current environment config file
 	 */

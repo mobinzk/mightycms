@@ -116,7 +116,7 @@ $('form.validate').on('click', 'button[type="submit"]', function(e){
 
 });
 
-$('.pages, .blog, .users').on('click', '.delete', function(e){
+$('.pages, .blog, .users, .shop').on('click', '.delete', function(e){
     if (!confirm('Are you sure you want to delete this?')){
         e.preventDefault();
     }
@@ -201,6 +201,60 @@ $('.variation .published').on('click', function(e){
         $field.val('1');
     }
 
+});
+
+$('.ui_input_wrapper').on('click', '.add-variation', function(){
+
+    var $containter, $list, $selected, $select;
+    var template;
+
+    // Set context
+    $container = $(this).parent();
+    $list = $container.find('.ui_select_variations');
+    $selected = $container.find('select option:selected');
+    $select = $container.find('select');
+
+    // Check if variation already exists
+    if ($selected.val() === ''){
+
+        alert('You must select an item to add.');
+
+    } else if ($list.find('li[data-val="' + $selected.val() + '"][data-text="' + $selected.text() + '"]').size() < 1){
+
+        // Select data
+        template =  '<li data-val="' + $selected.val() + '" data-text="' + $selected.text() + '">' +
+                        '<span class="name">' + $selected.text() + '</span>' +
+                        '<span class="actions"><a href="#" class="uim-button delete red remove_variation">Delete</a></span>' +
+                        '<div class="move"><span class="icon-move"></span></div>' +
+                        '<input type="hidden" name="" value="' + $selected.val() + '" />' +
+                    '</li>';
+
+        $list.append(template);
+
+
+        // Serialize the inputs so that inputs have unique names
+        $list.find('li').each(function(item){
+            var count = item + 1;
+            $(this).find('input[type="hidden"]').attr('name', $select.attr('name') + '_select_variation_' + count);
+        });
+
+    } else {
+
+        alert('Variation "' + $selected.text() + '" has already been added.');
+
+    }
+
+
+});
+
+$('.ui_select_variations').sortable({
+    handle: '.move',
+});
+$('.ui_select_variations').on('click', '.remove_variation', function(e){
+    e.preventDefault();
+    if (confirm('Are you sure you want to delete this item?')){
+        $(this).parent().parent().remove();
+    }
 });
 // ======== Template variations  
 

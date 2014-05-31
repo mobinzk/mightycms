@@ -1,5 +1,14 @@
 <?php
 
+	// Load mightySDK
+	function mightyModels($class){
+		$file = APP_DIR.'/mightySDK/helpers/'.strtolower($class).'.php';
+		if (is_file($file)){
+			include_once $file;
+		}
+	}
+
+
 
 	function sys($class){
 		$file = SYSTEM_DIR.'/'.strtolower($class).'.php';
@@ -49,5 +58,6 @@
 	spl_autoload_register('module');
 	spl_autoload_register('helpers');
 	spl_autoload_register('models');
+	spl_autoload_register('mightyModels');
 
 ?>

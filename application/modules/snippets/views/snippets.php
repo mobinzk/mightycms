@@ -1,4 +1,4 @@
-<?php include(APP_DIR.'/modules/default/inc/header.php'); ?>
+<?php include(STATIC_DIR.'/inc/header_inner.php'); ?>
 
 <div class="uim-table-wrapper">
 	<table class="uim-table">
@@ -7,7 +7,10 @@
 			<th>Description</th>
 			<th class="action"></th>
 		</tr>
-		<?php foreach (Snippets::getAll() as $Snippet) { ?>
+		<tbody>
+		<?php 
+			if($snippets)
+			foreach ($snippets as $Snippet) { ?>
 		<tr>
 			<td><?= $Snippet->name ?></td>
 			<td><?= $Snippet->description ?></td>
@@ -22,7 +25,8 @@
 			</td>
 		</tr>
 		<?php } ?>
+		</tbody>
 	</table>
 </div>
 
-<?php include(APP_DIR.'/modules/default/inc/footer.php'); ?>
+<?php include(STATIC_DIR.'/inc/footer_inner.php'); ?>

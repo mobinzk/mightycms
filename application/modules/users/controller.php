@@ -58,7 +58,7 @@
 
 			// Load the template
 			$section = 'default';
-			$template = new template('users.xml', 'application/modules/users/static/');
+			$template = new template('mighty.users.xml');
 			$data['template'] = $template;
 			$data['section'] = $template->getSection($section);
 			
@@ -83,7 +83,7 @@
 
 			// Load the template
 			$section = 'default';
-			$template = new template('users.xml', 'application/modules/users/static/');
+			$template = new template('mighty.users.xml');
 			$data['template'] = $template;
 			$data['section'] = $template->getSection($section);
 

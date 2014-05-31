@@ -44,7 +44,7 @@
 		'action' => 'controller'
 	));
 
-	// Pages
+	// Articles
 	Pocket::setRoute('/articles/<:url>', array(
 		'module' => 'articles',
 		'action' => 'controller'
@@ -52,6 +52,17 @@
 
 	Pocket::setRoute('/articles', array(
 		'module' => 'articles',
+		'action' => 'controller'
+	));
+
+	// Shop
+	Pocket::setRoute('/shop/<:url>', array(
+		'module' => 'shop',
+		'action' => 'controller'
+	));
+
+	Pocket::setRoute('/shop', array(
+		'module' => 'shop',
 		'action' => 'controller'
 	));
 
@@ -76,7 +87,12 @@
 		'action' => 'credits'
 	));
 
+	Pocket::setRoute('/markdownHTML', array(
+		'module' => 'markdown',
+		'action' => 'markdownHTML'
+	));
+
 	// Pocket::setRoute('/');
 
-	Pocket::setRoute('/<:slug>');
+	// Pocket::setRoute('/<:slug>');
 ?>
