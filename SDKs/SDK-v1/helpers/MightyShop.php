@@ -29,7 +29,6 @@
 
 			$option = (object) $option;
 
-
 			/**
 			 * Categories
 			 */
@@ -43,7 +42,7 @@
 			 * Pagination Limit
 			 */
 
-			if(!$option->category) {
+			// if(!$option->category) {
 				if ($option->page == 1){
 					$rowStart = 0;	
 				} else {
@@ -59,7 +58,7 @@
 
 				$totalRows = DBi::getRow("SELECT count(id) as count FROM `shop_products` WHERE `published` = '".$option->published."'");
 				$totalPages = ceil($totalRows->count/$option->per_page);
-			}
+			// }
 
 
 			/**
@@ -107,6 +106,8 @@
 				'prev_page' => $prev_page,
 				'products'  => $product_detail
 			);
+
+			pocket::Debug($return);
 
 			return $return;
 
