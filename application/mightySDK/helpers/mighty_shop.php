@@ -70,7 +70,10 @@
 				    				`categoryid` 	= '".$categoryid."'
 				    			");
 
+			    // Needs to improve and change
 			    $fields['template_variation_options_END_data_link_value'] = $pageid['id'];
+			    $fields['template_variation_options_videos_END_data_link_value'] = $pageid['id'];
+			    
 
 			    $this->addSnippets($fields, $pageid['id']);			    
 				Mighty::Pages()->saveTemplateVariations($fields);
