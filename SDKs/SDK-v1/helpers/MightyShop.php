@@ -107,8 +107,6 @@
 				'products'  => $product_detail
 			);
 
-			pocket::Debug($return);
-
 			return $return;
 
 		}
