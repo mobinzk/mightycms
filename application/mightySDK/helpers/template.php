@@ -74,7 +74,7 @@
 						$value = $input->attr->value;
 					}
 
-					$content .= '<input value="'.$value.'" type="hidden" name="'.$field_name.'" id="'.$field_name.'" />';
+					$content .= '<input value="'.htmlentities($value).'" type="hidden" name="'.$field_name.'" id="'.$field_name.'" />';
 
 				break;
 
@@ -88,7 +88,7 @@
 						'maxlength'
 					);
 
-					$content .= '<input value="'.$value.'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
+					$content .= '<input value="'.htmlentities($value).'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
 
 				break;
 
@@ -109,7 +109,7 @@
 						$value = date('d/m/Y');
 					}
 
-					$content .= '<input value="'.$value.'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
+					$content .= '<input value="'.htmlentities($value).'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
 
 					$content .= '<script>
 								$(function() {
@@ -133,7 +133,7 @@
 						$value = date('Y-m-d');
 					}
 
-					$content .= '<input value="'.$value.'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
+					$content .= '<input value="'.htmlentities($value).'" type="text" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'/>';
 
 				break;
 
@@ -162,7 +162,7 @@
 						$height = '350';
 					}
 
-					$content .= '<textarea style="height:'.$height.'px" cols="" rows="" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'>'.$value.'</textarea>';
+					$content .= '<textarea style="height:'.$height.'px" cols="" rows="" name="'.$field_name.'" id="'.$field_name.'" '.$this->applyInputOptions($options, $input->attr).'>'.htmlentities($value).'</textarea>';
 
 				break;
 
