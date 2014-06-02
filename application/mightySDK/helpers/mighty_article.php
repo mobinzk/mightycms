@@ -279,6 +279,17 @@
 			return stripslashes($field->value);
 		}
 
+		public function getNoProducts($categoryid) {
+			$category = DBi::getRow("SELECT 
+										count(id) as count
+									FROM 
+										`articles` 
+									WHERE 
+										`categoryid` = $categoryid");
+
+				return $category->count;
+		}
+
 
 
 		// Categories ----------------------------------
@@ -288,7 +299,7 @@
 									* 
 								FROM 
 									articles_categories 
-								ORDER BY position DESC");
+								ORDER BY position ASC");
 		}
 
 		public function getCategory($id) {
@@ -402,6 +413,18 @@
 			}
 
 			return (object) $response;
+		}
+
+		public function sort_categories(){
+			$order = $_POST['ids'];
+			$position = 0;
+			foreach ($order as $id) {
+			    $position = $position + 1;
+			    DBi::query("UPDATE `articles_categories` SET `position` = '$position' WHERE `categoryid` = '$id'");
+			}
+
+			Mighty::activities()->log('updated the article categories structure.', 'sort');
+				
 		}
 
 

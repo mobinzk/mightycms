@@ -11,12 +11,14 @@
 	<table class="uim-table">
 		<tr>
 			<th>Category Title</th>
+			<th>Number of Articles</th>
 			<th></th>
 		</tr>
 		<tbody>
 		<?php foreach ($categories as $category) { ?>
-		<tr>
+		<tr id="<?= $category->categoryid ?>">
 			<td><?= $category->name ?></td>
+			<td><?= Mighty_Article::getNoProducts($category->categoryid) ?></td>
 			<td class="action">
 				<?php if($permissions->delete_article) { ?>
 				<form action="" method="POST">
@@ -39,6 +41,9 @@
 					<button type="submit" class="uim-button edit blue">Edit</button>
 				</form>
 				<?php }?>
+				<div class="move">
+					<div class="icon-move"></div>
+				</div>
 			</td>
 		</tr>
 		<?php } ?>

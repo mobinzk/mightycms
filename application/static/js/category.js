@@ -31,3 +31,37 @@ $('#name').keyup(function(e) {
     URL.create(escape($content));
 });
 // ======== URL
+
+// ======== Sortable
+$(function(){
+    var fixHelper = function(e, ui) {
+      ui.children().each(function() {
+        $(this).width($(this).width());
+      });
+      return ui;
+    };
+
+    // Sortable
+    $('.uim-table tbody').sortable({
+        handle: '.move',
+        placeholder: 'uim-state-highlight',
+        forcePlaceholderSize: true,
+        helper: fixHelper,
+        // connectWith: "ul",
+        start: function(event, ui){
+           
+        },
+        stop: function(event, ui){
+          console.log($(this).sortable('toArray'));
+           $.ajax({
+                url: '/mightycms/articles/sort-categories',
+                method: 'POST',
+                data: {
+                    ids: $(this).sortable('toArray')
+                }
+           });
+
+        }
+    }).disableSelection();
+});
+// ======== Sortable

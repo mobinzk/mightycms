@@ -148,6 +148,12 @@
 			$data['title']       = 'mightyCMS - Articles / Categories';
 			$data['description'] = '';
 			$data['keywords']    = '';
+
+			$data['additional'] = array(
+				'js' => array(
+					'/mightycms/'.STATIC_DIR.'/js/category'
+				)
+			);
 			
 			$data['permissions'] = Mighty::Users()->getPermissions();
 
@@ -254,6 +260,10 @@
 
 		}
 
+		public function sort_categories(){
+			Mighty::Article()->sort_categories();
+		}
+
 		public function controller() {
 			$url = ($this->params->url) ? $this->params->url : '';
 
@@ -278,6 +288,9 @@
 					break;
 				case 'edit-category':
 					$this->editCategory();
+					break;
+				case 'sort-categories':
+					$this->sort_categories();
 					break;
 				default:
 					$this->articles();
