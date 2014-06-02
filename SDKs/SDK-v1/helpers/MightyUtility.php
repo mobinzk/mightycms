@@ -84,10 +84,20 @@
 
 				// Check if it's product page
 				if(!$query) {
-					$query = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
-					$query = DBi::getRow('SELECT * FROM `shop_products_categories` WHERE `url` ="'.$urls[1].'"');
-					$query = DBi::getRow('SELECT * FROM `shop_products` WHERE `url` ="'.$urls[2].'" AND `categoryid` = '.$query->categoryid.' ');
-					$query = 'product';
+					$query1 = DBi::getRow('SELECT * FROM `pages` WHERE `url` ="'.$urls[0].'" AND parentid IS NULL');
+					
+					if($query1) {
+						$query2 = DBi::getRow('SELECT * FROM `shop_products_categories` WHERE `url` ="'.$urls[1].'"');
+						
+						if($query2) {
+							$query3 = DBi::getRow('SELECT * FROM `shop_products` WHERE `url` ="'.$urls[2].'" AND `categoryid` = '.$query2->categoryid.' ');
+							
+							if($query3) {
+
+								$query = 'product';
+							}
+						}
+					}
 				}
 
 
