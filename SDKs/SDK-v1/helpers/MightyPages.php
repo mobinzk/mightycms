@@ -14,7 +14,7 @@
 				$parent = "WHERE parentid = '$parentid'";
 			}
 
-			$pages = DBi::getAll("SELECT * FROM pages $parent ORDER BY position ASC");
+			$pages = DBi::getAll("SELECT * FROM pages $parent AND `published` = '1' ORDER BY position ASC");
 
 			if($pages)
 			foreach ($pages as $key => $page) {
@@ -92,57 +92,6 @@
 			return array_reverse($results);
 		}
 
-		public function sortXML($results, $ignore = array()) {
-			
-				foreach ($results as $value) {
-					
-					if(!in_array($value->id, $ignore)) {
-						$URL = '';
-						if($value->parentid) {
-							$parentURL = $this->cascadeURL($value->parentid);
-
-							foreach ($parentURL as $p) {
-								$URL .= '/'.$p->url;
-							}
-						}
-
-						$xml .= '<url>';
-						$xml .= "\r\n";
-						$xml .= '<loc>http://'.$_SERVER['SERVER_NAME'].$URL.'/'.$value->url.'</loc>';
-						$xml .= "\r\n";
-						$xml .= '<lastmod>'.date('c', time()).'</lastmod>';
-						$xml .= "\r\n";
-						$xml .= '<changefreq>monthly</changefreq>';
-						$xml .= "\r\n";
-						$xml .= '<priority>0.8</priority>';
-						$xml .= "\r\n";
-						$xml .= '</url>';
-						$xml .= "\r\n";
-
-					}
-						
-
-					if($value->sub_pages) {
-						$xml .= $this->sortXML($value->sub_pages, $ignore);
-					}
-
-				}
-				return $xml;
-		}
-
-		public function googlesitemap($ignore = array()) {
-			$results = $this->getAll();
-
-			$xml = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-
-				$xml .= $this->sortXML($results, $ignore);
-
-			$xml .= '</urlset>';
-
-			header ("Content-Type:text/xml");
-			
-			return $xml;
-		}
 	}
 
 ?>

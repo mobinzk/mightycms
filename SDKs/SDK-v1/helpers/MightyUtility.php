@@ -124,6 +124,83 @@
 			return $content;
 		}
 
+		public function sortXMLgooglemap($results, $ignore = array()) {
+			
+				foreach ($results as $value) {
+					
+					if(!in_array($value->id, $ignore)) {
+						$URL = '';
+						if($value->parentid) {
+							$parentURL = MightyPages::cascadeURL($value->parentid);
+
+							foreach ($parentURL as $p) {
+								$URL .= '/'.$p->url;
+							}
+						}
+
+						// It's product
+						if($value->instock) {
+							$URL = '/products/'.$value->category->url;
+						}
+
+						// It's product categories
+						if($value->categoryid && !$value->instock) {
+							$URL = '/products';
+						}
+
+						$xml .= '<url>';
+						$xml .= "\r\n";
+						$xml .= '<loc>http://'.$_SERVER['SERVER_NAME'].$URL.'/'.$value->url.'</loc>';
+						$xml .= "\r\n";
+						$xml .= '<lastmod>'.date('c', time()).'</lastmod>';
+						$xml .= "\r\n";
+						$xml .= '<changefreq>monthly</changefreq>';
+						$xml .= "\r\n";
+						$xml .= '<priority>0.8</priority>';
+						$xml .= "\r\n";
+						$xml .= '</url>';
+						$xml .= "\r\n";
+
+					}
+						
+
+					if($value->sub_pages) {
+						$xml .= $this->sortXML($value->sub_pages, $ignore);
+					}
+
+				}
+				return $xml;
+		}
+
+		public function googlesitemap($ignore = array()) {
+			$pages = MightyPages::getAll();
+			$mightyshop = new MightyShop;
+			$products = $mightyshop->getProducts()['products'];
+			$productCategories = $mightyshop->getCategories();
+
+			$ignorePages = array('5');
+
+			$xml = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+				if($pages){
+					$xml .= MightyUtility::sortXMLgooglemap($pages, $ignorePages);
+				}
+
+				if($products){
+					$xml .= MightyUtility::sortXMLgooglemap($products);
+				}
+
+				if($productCategories){
+					$xml .= MightyUtility::sortXMLgooglemap($productCategories);
+				}
+
+			$xml .= '</urlset>';
+
+			header ("Content-Type:text/xml");
+			
+			return $xml;
+		}
+
 
 	}
 
