@@ -611,6 +611,7 @@
 
 				$table_info = DBi::getAll("DESCRIBE `".$table['data_table']."`");
 				
+				if($table_info)
 				foreach ($table_info as $f) {
 					if (!$f->Key){
 						$table_fields[$f->Field] = '';
