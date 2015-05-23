@@ -32,7 +32,7 @@
 
 		public function set($key, $data){
 			$key = md5($key);
-			self::$memcache->set($key, $data, TRUE, self::$expireTime);
+			self::$memcache->set($key, $data, 0, self::$expireTime);
 		}
 
 		public function delete_all(){
